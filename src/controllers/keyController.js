@@ -9,7 +9,7 @@ const ApiKeys = new Map();
 // Paramètres de hashing
 const SALT_ROUNDS = 12;
 
-exports.generateApiKey = async (req, res) => {
+const generateApiKey = async (req, res) => {
   const { clientSecret } = req.body;
   if (!clientSecret || clientSecret.length < 8) {
     return res.status(400).json({ error: 'clientSecret requis (min. 8 caractères)' });
@@ -30,5 +30,7 @@ exports.generateApiKey = async (req, res) => {
   res.json({ apiKey, deviceId });
 };
 
-// Expose pour le middleware d’authentification
-exports.ApiKeys = ApiKeys;
+module.exports = {
+  generateApiKey,
+  ApiKeys,
+};

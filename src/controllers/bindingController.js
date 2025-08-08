@@ -11,7 +11,7 @@ const { getDeviceId } = require('../utils/device');
  * Lise automatiquement le nouvel deviceId et
  * met à jour la liaison dans ApiKeys.
  */
-exports.rebindDevice = async (req, res) => {
+const rebindDevice = async (req, res) => {
   const apiKey       = req.headers['x-api-key'];
   const clientSecret = req.headers['x-client-secret'];
   const record       = ApiKeys.get(apiKey);
@@ -35,3 +35,7 @@ exports.rebindDevice = async (req, res) => {
     deviceId: newDeviceId
   });
 };
+
+module.exports = {
+    rebindDevice
+}
